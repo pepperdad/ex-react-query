@@ -1,0 +1,47 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.detail-container h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.detail-container p {
+  margin: 10px 0;
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+.detail-container p:last-child {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-style: italic;
+  color: #666;
+}
+
+.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255, 0, 0);
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.5em;
+}
+
+.delete-button {
+  background-color: red;
+}
