@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useGetAllPost } from "../../hooks";
 import "../../style/list.css";
 
 const List = () => {
   const navigate = useNavigate();
+  const { data, isLoading } = useGetAllPost();
 
   if (isLoading) return <div>로딩 중...</div>;
 

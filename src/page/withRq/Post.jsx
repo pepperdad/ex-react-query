@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCreatePost } from "../../hooks";
 import "../../style/post.css";
 
 const Post = () => {
@@ -7,6 +8,7 @@ const Post = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [writer, setWriter] = useState("");
+  const { mutate } = useCreatePost();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +18,8 @@ const Post = () => {
       content,
       writer,
     };
+
+    mutate(postData);
 
     navigate("/with-rq/list");
   };

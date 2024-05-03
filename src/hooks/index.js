@@ -1,5 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deletePost, getPostData } from "../api";
+import { createPost, deletePost, getAllPostData, getPostData } from "../api";
+
+export const useGetAllPost = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => getAllPostData(),
+    staleTime: 50000,
+    gcTime: 100000,
+  });
+
+  return { data, isLoading, error };
+};
 
 export const useGetPost = (id) => {
   const { data, isLoading, error } = useQuery({
@@ -10,6 +21,19 @@ export const useGetPost = (id) => {
   });
 
   return { data, isLoading, error };
+};
+
+export const useCreatePost = () => {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (postData) => createPost(postData),
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+
+  return { mutate };
 };
 
 export const useDeletePost = (id) => {
