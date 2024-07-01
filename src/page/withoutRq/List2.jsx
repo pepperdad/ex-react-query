@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllPostData } from "../../api";
 import "../../style/list.css";
 
@@ -25,15 +25,23 @@ const List2 = () => {
     fetchPosts();
   }, []);
 
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading)
+    return (
+      <div style={{ background: "yellow", width: "100vw", height: "100vh" }}>
+        로딩 중...
+      </div>
+    );
 
   return (
     <div>
       <h1>리스트 페이지</h1>
       <div>
-        <button onClick={() => navigate(`/`)}>홈</button>
-        <button onClick={() => navigate(`/without-rq/list`)}>목록</button>
-        <button onClick={() => navigate(`/with-rq/post`)}>글쓰기</button>
+        <Link href="/">
+          <button>홈</button>
+        </Link>
+        <Link href="/without-rq/list">
+          <button>목록</button>
+        </Link>
       </div>
 
       <ul>
@@ -42,9 +50,9 @@ const List2 = () => {
             key={post.id}
             onClick={() => navigate(`/without-rq/detail/${post.id}`)}
           >
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <p>작성자: {post.writer}</p>
+            <h3>{post.website}</h3>
+            <p>{post.phone}</p>
+            <p>작성자: {post.name}</p>
           </li>
         ))}
       </ul>

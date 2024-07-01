@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetAllPost } from "../../hooks";
 import "../../style/list.css";
 
@@ -6,15 +6,23 @@ const List = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetAllPost();
 
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading)
+    return (
+      <div style={{ background: "yellow", width: "100vw", height: "100vh" }}>
+        로딩 중...
+      </div>
+    );
 
   return (
     <div>
       <h1>리스트 페이지</h1>
       <div>
-        <button onClick={() => navigate(`/`)}>홈</button>
-        <button onClick={() => navigate(`/with-rq/list`)}>목록</button>
-        <button onClick={() => navigate(`/with-rq/post`)}>글쓰기</button>
+        <Link href="/">
+          <button>홈</button>
+        </Link>
+        <Link href="/with-rq/list">
+          <button>목록</button>
+        </Link>
       </div>
 
       <ul>
@@ -23,9 +31,9 @@ const List = () => {
             key={data.id}
             onClick={() => navigate(`/with-rq/detail/${data.id}`)}
           >
-            <h3>{data.title}</h3>
-            <p>{data.content}</p>
-            <p>작성자: {data.writer}</p>
+            <h3>{data.website}</h3>
+            <p>{data.phone}</p>
+            <p>작성자: {data.name}</p>
           </li>
         ))}
       </ul>
