@@ -6,6 +6,6 @@ export const useGetAllPost = () => {
     queryKey: ["posts"],
     queryFn: () => getAllPostData(),
     staleTime: 5000,
-    gcTime: 100000,
+    gcTime: 5000,
   });
 };
